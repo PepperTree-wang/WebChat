@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+    <setting name="logImpl" value="log4j2"/>
+</settings>
+<!--    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            &lt;!&ndash;是否查询总条数&ndash;&gt;
+            <property name="rowRoundsWithCount" value="true"/>
+            &lt;!&ndash;是否启用合理化建议,页码小于1查询第一页，页码大于总页数，查询最后一页&ndash;&gt;
+            <property name="reasonable" value="true"/>
+            &lt;!&ndash;数据库方言&ndash;&gt;
+            <property name="helperDialect" value="mysql"/>
+         </plugin>
+     </plugins>-->
+ </configuration>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+
+    <!--&lt;!&ndash; 链接数据库 德鲁伊  连接池  初始链接  最少空闲链接 最多链接&ndash;&gt;-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"             value="jdbc:mysql://127.0.0.1:3306/WebChat?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai"/>
+        <property name="username"        value="root"/>
+        <property name="password"        value="wanmait"/>
+        <property name="initialSize"     value="30"/>
+        <property name="minIdle"         value="30"/>
+        <property name="maxActive"       value="100"/>
+        <property name="maxWait"         value="5000"/>
+        <property name="filters"         value="mergeStat"/>
+    </bean>
+
+    <!--&lt;!&ndash; mapping/...Mapper.xml建立对象 &ndash;&gt;-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mapping/*.xml"/>
+    </bean>
+    <!--&lt;!&ndash; mybatis扫描接口的包 &ndash;&gt;-->
+    <mybatis-spring:scan base-package="com.wanmait.webchat.mapper"/>
+
+    <!--&lt;!&ndash; 扫描@Service  service包 &ndash;&gt;-->
+    <context:component-scan base-package="com.wanmait.webchat.service"/>
+</beans>
